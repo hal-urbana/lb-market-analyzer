@@ -1,0 +1,40 @@
+# Laguna Beach Market Analyzer - Cron Jobs
+# Add these to your crontab using: crontab -e
+
+# Every hour - minimal research (weather + events)
+# 0 * * * * cd ~/laguna-beach-market-analyzer && /usr/bin/python3 lb-market.py --only events --output ~/laguna-data/hourly
+# Keep hourly output small (events only)
+
+# Every day at 8:00 AM PST - full market research for daily content
+# 0 8 * * * cd ~/laguna-beach-market-analyzer && /usr/bin/python3 lb-market.py --all --output ~/laguna-data/daily
+# This generates: laguna_market_20260305_HHMMSS.json
+
+# Every Monday at 9:00 AM PST - weekly summary (skip weekends)
+# 0 9 * * 1 cd ~/laguna-beach-market-analyzer && /usr/bin/python3 lb-market.py --all --output ~/laguna-data/weekly
+# Good for weekly blog posts
+
+# Every first day of month - monthly comprehensive market report
+# 0 8 1 * * cd ~/laguna-beach-market-analyzer && /usr/bin/python3 lb-market.py --all --output ~/laguna-data/monthly
+
+# Example - run full research every morning at 8 AM
+0 8 * * * \
+    cd /home/hal/laguna-beach-market-analyzer && \
+    /usr/bin/python3 lb-market.py --all
+
+# Example - run events-only hourly
+0 * * * * \
+    cd /home/hal/laguna-beach-market-analyzer && \
+    /usr/bin/python3 lb-market.py --only events --output /home/hal/laguna-data/events
+
+# Example - run full research every weekday at 7 AM PST
+0 7 * * 1-5 \
+    cd /home/hal/laguna-beach-market-analyzer && \
+    /usr/bin/python3 lb-market.py --all --output /home/hal/laguna-data/daily
+
+---
+# To edit crontab:
+# 1. crontab -e
+# 2. Copy and Paste one of the lines above
+# 3. Save and exit (:wq)
+# 4. Verify: crontab -l
+---
