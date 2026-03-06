@@ -1,0 +1,15 @@
+{
+  "name": "laguna-beach-market-analyzer",
+  "version": "1.0.0",
+  "description": "Research bot for Laguna Beach real estate market analysis",
+  "main": "lb-market.py",
+  "scripts": {
+    "update": "python lb-market.py --all",
+    "research": "python lb-market.py",
+    "test": "python lb-market.py --dry-run"
+  },
+  "dependencies": {
+    "brave-search": "^1.0.0",
+    "requests": "^2.31.0"
+  }
+}
