@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+data/*.json
+data/blog/
+data/dashboard.html
+lagoon-market-bot.zip
+.env
